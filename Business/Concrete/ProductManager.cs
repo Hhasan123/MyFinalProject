@@ -31,7 +31,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 10)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
@@ -45,7 +45,7 @@ namespace Business.Concrete
 
         public IDataResult<Product> GetById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == id), Messages.Getted);
         }
 
         public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
